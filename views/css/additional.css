@@ -1,0 +1,42 @@
+.darkblue_bcg {
+   background-color: rgb(101, 133, 235);
+}
+
+.orange_bcg {
+background-color: rgb(235, 145, 127);
+border-color: rgb(219,129,110);
+}
+
+.orange_bcg:hover {
+    background-color: rgb(232, 118, 95);
+    border-color: rgb(232, 118, 95);
+  }
+
+.green_bcg {
+    background-color: rgb(46, 199, 133);
+    border-color: rgb(46, 199, 133);
+}
+
+.green_bcg:hover {
+    background-color: rgb(21, 148, 93);
+    border-color: rgb(21, 148, 93);
+
+}
+
+.second_blue {
+    background-color: rgb(116, 179, 214);
+    border-color: rgb(116, 179, 214);
+}
+
+.second_blue:hover {
+    background-color: rgb(26, 115, 163);
+    border-color: rgb(26, 115, 163);
+}
+
+.red {
+    background-color: rgb(250, 245, 165);
+}
+
+.red:hover {
+    background-color: rgb(247, 237, 72);
+}

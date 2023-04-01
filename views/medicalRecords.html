@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <title>Patient: Medical Records</title>
+    <!-- Favicon-->
+    <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
+    <!-- Bootstrap icons-->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet" />
+    <!-- Core theme CSS (includes Bootstrap)-->
+    <link href="css/styles.css" rel="stylesheet" />
+    <link href="css/additional.css" rel="stylesheet" />
+</head>
+
+<body>
+    <!-- Responsive navbar-->
+    <div class="darkblue_bcg">
+        <%- include('navbar'); -%>
+            <!-- Header-->
+            <header class="py-5">
+                <div class="container px-5">
+                    <div class="row gx-5 justify-content-center">
+                        <div class="col-lg-6">
+                            <div class="text-center my-5">
+                                <h2 class="display-5 fw-bolder text-white mb-2">Past Medical Records
+                                </h2>
+                                <p class="text-white-50 mb-4">View your past medical history, and request for
+                                    official data from the hospitals where you may possibly have records at.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </header>
+    </div>
+
+    <!-- Page Content-->
+    <br>
+    <br>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8">
+
+                <!-- Retrive Hospital Records-->
+                <div class="card mb-4">
+                    <div class="card-body">
+                        <h3 class="card-title">Retrive Records from Hospitals</h3>
+                        <p class="card-text"> Find basic records from hospitals here. Includes (Inpatient Date,
+                            Outpatient Date, Unique ID, and Case of Admission)</p>
+                        <button type="button" class="red btn btn" style=" width: 25%;" data-bs-toggle="modal"
+                            data-bs-target="#hospitalModal"> Retrive →</button>
+                        <!---Modal Handler for retriving records from hospital-->
+                        <div class="modal fade" id="hospitalModal" tabindex="-1" aria-labelledby="hospitalModallabel"
+                            aria-hidden="true">
+                            <div class="modal-dialog modal-dialog-centered">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <select name="hospitals" class="form-control form-select bg-light border-dark"
+                                            id="hospitals" required>
+                                            <!-- If value is "" then send alert-->
+                                            <option value="">Select Hospital</option>
+                                            <option value="NUH">National University Hospital</option>
+                                            <option value="MENH">Mount Elizabeth Novena</option>
+                                            <option value="IMH">Institute of Mental Health</option>
+                                            <option value="TTSH">Tan Tock Seng Hospital </option>
+                                            <option value="KKH">KK Women's and Children's Hospital</option>
+                                            <option value="GSC">Gleneagles Speciality Center</option>
+                                            <option value="SGH">Singapore General Hospital</option>
+                                            <option value="NEC">National Eye Center</option>
+                                            <option value="NCI">National Cancer Institute</option>
+                                            <option value="NHC">National Heart Institute</option>
+                                        </select>
+                                        <!--Close Modal Form-->
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                            aria-label="Close"></button>
+                                    </div>
+                                    <form>
+                                        <div class="modal-body">
+                                            <!---Retrive records from database as read only values-->
+                                            <!---Just retrive the unique ID as Patient unique ID-->
+                                            <div class="mb-3">
+                                                <label for="pid" class="form-label">Patient Unique ID:</label>
+                                                <input type="number" class="form-control bg-white" id="pid" name="pid"
+                                                    readonly>
+                                                <!--Reason for Admission-->
+                                                <label for="case" class="form-label">Case:</label>
+                                                <input type="text" class="form-control bg-white" id="case" name="case"
+                                                    readonly>
+                                                <!--In Patient Date-->
+                                                <label for="inID" class="form-label">Last InPatient Date:
+                                                </label>
+                                                <input type="date" class="form-control bg-white" id="inID" name="inID"
+                                                    readonly>
+                                                <!--Outpatient Date-->
+                                                <label for="outID" class="form-label">Last OutPatient Date:
+                                                </label>
+                                                <input type="date" class="form-control bg-white" id="outID" name="outID"
+                                                    readonly>
+                                                <!---Medications prescribed-->
+                                                <label for="medications" class="form-label">Medications</label>
+                                                <input type="text" class="form-control bg-white" id="medications"
+                                                    name="medications" readonly>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Form for Medical Report Request-->
+                <div class="card mb-4">
+                    <div class="card-body">
+                        <h3 class="card-title">Request for Detailed Medical Report</h3>
+                        <p class="card-text"> If you wish to retrive professional medical reports, including
+                            (but
+                            not
+                            limited to CTs, Blood Tests, Surgery Reports/ Rich Media Statements) proceed with
+                            the
+                            form
+                            below.<br><br> Please note this request will take atleast<b> 5 business days </b> to
+                            respond
+                            to. The results of your application will be sent to the email address you have
+                            registered
+                            with us.<b> For urgent requests,</b> contact our helpdesk at +65 66654455 </p>
+
+                        <form id="requestMedicalform">
+                            <!-- Name input-->
+                            <div class="form-floating mb-3">
+                                <input class="form-control" id="fullname" type="text" placeholder="Enter your name..."
+                                    required />
+                                <label for="fullname">Full Name (First, Last)</label>
+                            </div>
+                            <!-- Hospital input-->
+                            <div class="form-floating mb-3">
+                                <select name="hname" class="form-control form-select bg-light border-dark" id="hname"
+                                    required>
+                                    <!-- If value is "" then send alert-->
+                                    <option selected disabled value=""></option>
+                                    <option value="NUH">National University Hospital</option>
+                                    <option value="MENH">Mount Elizabeth Novena</option>
+                                    <option value="IMH">Institute of Mental Health</option>
+                                    <option value="TTSH">Tan Tock Seng Hospital </option>
+                                    <option value="KKH">KK Women's and Children's Hospital</option>
+                                    <option value="GSC">Gleneagles Speciality Center</option>
+                                    <option value="SGH">Singapore General Hospital</option>
+                                    <option value="NEC">National Eye Center</option>
+                                    <option value="NCI">National Cancer Institute</option>
+                                    <option value="NHC">National Heart Institute</option>
+                                </select>
+                                <label for="hname">Hospital Name</label>
+                            </div>
+                            <!-- Reason for Request-->
+                            <div class="form-floating mb-3">
+                                <select name="request_reason" class="form-control form-select bg-light border-dark"
+                                    id="request_reason" required>
+                                    <option selected disabled value=""></option>
+                                    <option>Insurance</option>
+                                    <option>Lawsuits</option>
+                                    <option>Personal Tracking </option>
+                                    <option>Other reasons, none of the Above</option>
+                                </select>
+                                <label for="request_reason">Reason for request</label>
+                            </div>
+                            <!-- Detailed Request input-->
+                            <div class="form-floating mb-3">
+                                <input class="form-control" id="details" type="text" style="height: 170px;"
+                                    placeholder="Enter details of what is Required..." data-sb-validations="required"
+                                    required />
+                                <label for="reason">Can you provide us more info?</label>
+                            </div>
+                            <!-- Submit Button-->
+                            <div class="d-grid">
+                                <button class="red btn btn btn-lg" type="submit" id="submitButton"
+                                    aria-describedby="submitWarn" onsubmit="submit_alert()">Submit →</button>
+                                <!---On submit alert that form request has been submitted-->
+                                <script>
+                                    function submit_alert() {
+                                        alert("The form was submitted");
+                                    }
+                                </script>
+                            </div>
+                            <div id="submitWarn" class="form-text">By submitting, you agree to our <a href="?">Terms
+                                    &
+                                    Conditions</a> </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Default Medical records (side) extracted from the database-->
+            <div class="col-lg-4">
+
+                <!-- Patient Info widget-->
+                <div class="card mb-4">
+                    <div class="orange_bcg">
+                        <div class="card-header text-white">Personal Particulars</div>
+                    </div>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <ul class="list-unstyled mb-0">
+                                    <li>
+                                        <!--Retrive Name from DBS-->
+                                        <input value="<%= details.name %>" class="form-control bg-white border-0"
+                                            type="text" placeholder="Patient Name comes here"
+                                            aria-label="Patient Name comes here" readonly />
+                                    </li>
+                                    <li>
+                                        <!--Retrive Age from DBS-->
+                                        <input value="<%= details.age %>" class="form-control bg-white border-0"
+                                            type="text" style="width:30%; height: auto;" placeholder="Age"
+                                            aria-label="Patient Age comes here" readonly />
+                                    </li>
+                                    <li>
+                                        <!--Retrive Gender from DBS-->
+                                        <input value="<%= details.gender %>" class="form-control bg-white border-0"
+                                            type="text" style="width:40%; height:auto;" placeholder="Gender"
+                                            aria-label="Patient Gender comes here" readonly />
+                                    </li>
+                                    <li>
+                                        <!--Retrive DOB from DBS-->
+                                        <input value="<%= details.date_of_birth %>"
+                                            class="form-control bg-white border-0" type="text"
+                                            style="width:40%; height:auto;" placeholder="DOB"
+                                            aria-label="Patient DOB comes here" readonly />
+                                    </li>
+                                    <li>
+                                        <!--Retrive Address from DBS-->
+                                        <input value="<%= details.address %>" class="form-control bg-white border-0"
+                                            type="text" placeholder="Address" aria-label="Patient Address comes here"
+                                            readonly />
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Widget 2: Existing Prognosis Card-->
+                <div class="card mb-4">
+                    <div class="card-header bg-success text-white">Long Term Prognosis</div>
+                    <div class="card-body">
+                        <!--Retrive patient prognosis from the database-->
+                        <input value="<%= data.family_conditions %>" class="form-control bg-white border-0" type="text"
+                            placeholder="Details of Patient's prognosis" aria-label="Patient prognosis comes here"
+                            readonly />
+                    </div>
+                </div>
+
+                <!-- Widget 3: Vaccinations Card--->
+
+                <div class="card mb-4">
+                    <div class="second_blue card-header text-white">Vaccinations</div>
+                    <ul class="list-unstyled mb-0">
+                        <li> <input class="form-control bg-white border-0" type="text"
+                                placeholder="Inactivated poliovirus vaccine (IPV), 27th March 2001"
+                                aria-label="Patient Name comes here" readonly />
+                        </li>
+                        <li> <input class="form-control bg-white border-0" type="text"
+                                placeholder="DTap Vaccine, 30th March 2001" aria-label="DTap" readonly />
+                        </li>
+                        <li> <input class="form-control bg-white border-0" type="text"
+                                placeholder="Tuberculosis Vaccine, 4th April 2001" aria-label="DTap" readonly />
+                        </li>
+                        <li> <input class="form-control bg-white border-0" type="text"
+                                placeholder="TT and DTap (Booster), Vaccine, 3rd January 2017" aria-label="TT&DTap"
+                                readonly />
+                        </li>
+                        <li> <input class=" form-control bg-white border-0" type="text"
+                                placeholder="Pfzier Covid (2 Completed Doses), 3rd January 2022" aria-label="Pfzier"
+                                readonly />
+                        </li>
+                        <li> <input class=" form-control bg-white border-0" type="text"
+                                placeholder="Pfzier Covid (Booster Dose), 3rd April 2022" aria-label="pfzier_booster"
+                                readonly />
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer-->
+    <div class="darkblue_bcg">
+        <footer class="py-5">
+            <div class="container">
+                <p class="m-0 text-white">Please be informed that by even using our website, you agree to all of
+                    our
+                    Terms, Conditions, and other Privacy agreements.<br> If you require further details,<b>
+                        contact
+                        our
+                        SG
+                        center at +65 12344321.</b>
+                </p>
+            </div>
+        </footer>
+    </div>
+
+    <!-- Bootstrap core JS-->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Responsive calendar JS-->
+    <script src="scripts/calendar.js"></script>
+
+</body>
+
+</html>

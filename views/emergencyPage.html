@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <title>Emergency SOS Booking</title>
+    <!-- Favicon-->
+    <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
+    <!-- Bootstrap icons-->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet" />
+    <!-- Core theme CSS (includes Bootstrap)-->
+    <link href="css/styles.css" rel="stylesheet" />
+    <link href="css/additional.css" rel="stylesheet" />
+</head>
+
+<body>
+    <div class="darkblue_bcg">
+        <!-- Responsive navbar-->
+        <%- include('navbar'); -%>
+            <!-- Header-->
+            <header class="py-5">
+                <div class="container px-5">
+                    <div class="row gx-5 justify-content-center">
+                        <div class="col-lg-6">
+                            <div class="text-center my-5">
+                                <h1 class="display-5 fw-bolder text-white mb-2">Emergency SOS
+                                    <!-- Get name from databases -->
+                                </h1>
+                                <p class="text-white-50 mx-auto mt-2 mb-5">Book a quick appointment in cases of
+                                    emergency.
+                                </p>
+                                <center>
+                                    <!----Emergency button -->
+                                    <button type="button" class="btn btn-danger" id="sosSubmitButton"
+                                        data-bs-toggle="modal" data-bs-target="#emergencyBooking"> Book Immediately
+                                        →</button>
+                                </center>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </header>
+    </div>
+    <!-- Page Content-->
+    <!-- About SOS and conditions section-->
+    <section class="pt-4">
+        <div class="container">
+            <div class="card mb-4">
+                <div class="card-body">
+                    <div class="col-lg-12">
+                        <div class="content">
+                            <p class="card-text">Please note that this is <b class="text-danger">NOT AN
+                                    APPOINTMENTS
+                                    BOOKING
+                                    PAGE.</b><br>
+                                The following conditions apply for the same:</p>
+                            <ul>
+                                <li>Emergency appointments are meant for situations which
+                                    <b class="card-text text-black"> cannot wait
+                                        until the next day.</b>
+                                </li>
+                                <li>Please take note to not abuse this service so hinderence to actual
+                                    emergencies
+                                    do
+                                    not
+                                    happen.
+                                </li>
+                                <li>Appointment period will last only for 10 minutes</li>
+                                <li>No medical certificates,or repeat prescription will be given at the
+                                    appointment.
+                                </li>
+                                <li>The doctor will attend to your emergency problem only.</li>
+                                <li><b>If you are in severe pain or the situation
+                                        worsens, please contact an ambulance @995 immediately</b> </li>
+                            </ul>
+                            <br>
+                            <!--Checker for having agreed to the stated terms and conditions-->
+                            <p class="card-text">
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault" checked
+                                    readonly>
+                                <label class="form-check-label" for="flexCheckDefault">
+                                    By submitting, I have read and agreed to both, the above conditions and the
+                                    pre-existing
+                                    <a href="?">Terms & Conditions. </a>
+                                </label>
+                            </div>
+                            </p>
+                            <!----Modal popup to inform user that the appointment has been booked and that a staff will be calling them -->
+                            <div class="modal fade" id="emergencyBooking" tabindex="-1"
+                                aria-labelledby="emergencyBookingLabel" aria-hidden="true">
+                                <div class="modal-dialog modal-dialog-centered">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title text-success" id="emergencyBookingLabel">
+                                                Successfully
+                                                requested an
+                                                Emergency appointment!</h5>
+                                            <!--Close Alert/Confirmation Button-->
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                aria-label="Close"></button>
+                                        </div>
+                                        <!---Modal Body-->
+                                        <form>
+                                            <div class="modal-body">
+                                                <div class="mb-3">
+                                                    <p>We have set your request as top priority.<br><br> Please
+                                                        take
+                                                        note
+                                                        that
+                                                        our
+                                                        staff
+                                                        will contact you (registered phone) with further details
+                                                        and
+                                                        proceedings
+                                                        within the next hour.
+                                                        <br><b>If you are in severe pain or the
+                                                            situation
+                                                            worsens, please contact an ambulance IMMEDIATELY
+                                                        </b>
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <br>
+
+    <!-- Footer-->
+    <div class="darkblue_bcg">
+        <footer class="py-5">
+            <div class="container">
+                <p class="m-0 text-white">Please be informed that by even using our website, you agree to all of
+                    our
+                    Terms, Conditions, and other Privacy agreements.<br> If you require further details,<b>
+                        contact
+                        our
+                        SG
+                        center at +65 12344321.</b>
+                </p>
+            </div>
+        </footer>
+    </div>
+
+    <!---Script code to check if the terms and conditions checkbox has been checked, else the booking button should be rendered hidden/not available/shown-->
+    <script>
+        var checkBox = document.getElementById("flexCheckDefault");
+        var text = document.getElementById("sosSubmitButton");
+
+        text.style.display = "block";
+
+        function displayRInfo() {
+            if (checkBox.checked == true) {
+                text.style.display = "block";
+            } else {
+                text.style.display = "none";
+            }
+        }
+    </script>
+    <!-- Bootstrap core JS-->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Responsive calendar JS-->
+    <script src="scripts/calendar.js"></script>
+
+</body>
+
+</html>

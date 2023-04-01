@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <title>Reschedule Appointment</title>
+    <!-- Favicon-->
+    <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
+    <!-- Bootstrap icons-->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet" />
+    <!-- Core theme CSS (includes Bootstrap)-->
+    <link href="css/styles.css" rel="stylesheet" />
+    <!---CSS for calendar-->
+    <link href="css/calendar.css" rel="stylesheet">
+    <link href="css/additional.css" rel="stylesheet" />
+
+</head>
+
+<body>
+
+    <body onload="startTime()">
+        <!-- Responsive navbar-->
+        <div class="darkblue_bcg">
+            <%- include('navbar'); -%>
+                <!-- Header-->
+                <header class="py-5">
+                    <div class="container px-5">
+                        <div class="row gx-5 justify-content-center">
+                            <div class="col-lg-6">
+                                <div class="text-center my-5">
+                                    <h1 class="display-5 fw-bolder text-white mb-2">Reschedule Appointment
+                                    </h1>
+                                    <p class="text-white-50 mb-4">Reschedule your appointment to better suit your
+                                        convinence. Do
+                                        note that we do
+                                        not recommend rescheduling within an hour's range before your appointment for
+                                        the
+                                        in-convinence caused to other patients requiring slots.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </header>
+        </div>
+
+        <!-- Page Content-->
+        <section class="py-5">
+            <div class="container px-4 px-lg-5 my-5">
+                <div class="row gx-4 gx-lg-5 align-items-center">
+                    <!--Responsive Calender comes here-->
+                    <div class="col-md-6">
+                        <div class="calender_container">
+                            <div class="c_card">
+                                <div class="front">
+                                    <div class="contentfront">
+                                        <div class="month">
+                                            <table>
+                                                <tr class="orangeTr">
+                                                    <th>M</th>
+                                                    <th>T</th>
+                                                    <th>W</th>
+                                                    <th>T</th>
+                                                    <th>F</th>
+                                                    <th>S</th>
+                                                    <th>S</th>
+                                                </tr>
+                                                <tr class="whiteTr">
+                                                    <th></th>
+                                                    <th>1</th>
+                                                    <th>2</th>
+                                                    <th>3</th>
+                                                    <th>4</th>
+                                                    <th>5</th>
+                                                    <th>6</th>
+                                                </tr>
+                                                <tr class="whiteTr">
+                                                    <th>7</th>
+                                                    <th>8</th>
+                                                    <th>9</th>
+                                                    <th>10</th>
+                                                    <th>11</th>
+                                                    <th>12</th>
+                                                    <th>13</th>
+                                                </tr>
+                                                <tr class="whiteTr">
+                                                    <th>14</th>
+                                                    <th>15</th>
+                                                    <th>16</th>
+                                                    <th>17</th>
+                                                    <th>18</th>
+                                                    <th>19</th>
+                                                    <th>20</th>
+                                                </tr>
+                                                <tr class="whiteTr">
+                                                    <th>21</th>
+                                                    <th>22</th>
+                                                    <th>23</th>
+                                                    <th>24</th>
+                                                    <th>25</th>
+                                                    <th>26</th>
+                                                    <th>27</th>
+                                                </tr>
+                                                <tr class="whiteTr">
+                                                    <th>28</th>
+                                                    <th>29</th>
+                                                    <th>30</th>
+                                                    <th>31</th>
+                                                    <th></th>
+                                                    <th></th>
+                                                    <th></th>
+                                                </tr>
+                                            </table>
+                                        </div>
+                                        <div class="date">
+                                            <div class="datecont">
+                                                <div id="date"></div>
+                                                <div id="day"></div>
+                                                <div id="month"></div>
+
+                                                <i class="fa fa-pencil edit" aria-hidden="true"></i>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="back">
+                                    <div class="contentback">
+                                        <div class="backcontainer">
+                                            <br>
+                                            <br>
+                                            <p style="color:rgb(46, 44, 44);
+                                    font-size:15px;
+                                    font-family: 'Montserrat', sans-serif;
+                                    text-transform:uppercase;">Available Time Slots</p>
+                                            <div class="timeslots">
+                                                <div>11:00</div>
+                                                <div>12:00</div>
+                                                <div>14:00</div>
+                                                <div>15:00</div>
+                                                <div>16:00</div>
+                                                <div>18:00</div>
+                                                <div>19:00</div>
+                                                <div>20:00</div>
+                                                <div>21:00</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!--Section for form to come in-->
+                    <div class="col-md-6">
+                        <div class="small mb-1">29th August 2022</div>
+                        <h3 class="display-5 fw-bolder">Reschedule by revising the form below.</h3><br>
+                        <!---Form for making new appointment-->
+                        <form action="/rescheduleAppointment" method="POST" id="rescheduleAppointment">
+                            <!-- Appointment id -->
+                            <input type="hidden" name="appointment_id" value="<%= data.appointment_id %>">
+                            <!-- Reason for Visit-->
+                            <div class="form-floating mb-3">
+                                <input name="reason_for_visit" readonly value="<%= data.type %>"
+                                    class="form-control bg-light border-dark" id="reason_for_visit" required>
+                                <label for="reason_for_visit">Reason for Visit</label>
+                            </div>
+                            <!-- Appointment Date-->
+                            <div class="form-floating mb-3">
+                                <input name="c_date" class="form-control" id="c_date" type="date"
+                                    placeholder="Select Date" required />
+                                <label for="c_date"><b>Revised</b> Date</label>
+                            </div>
+                            <!-- Appointment Time-->
+                            <div class="form-floating mb-3">
+                                <input name="time" class="form-control" id="time" type="time" placeholder="Select Time"
+                                    required />
+                                <label for="time"><b>Revised</b> Time</label>
+                            </div>
+                            <div class="form-floating mb-3">
+                                <input name="name" readonly value="<%= data.name %>" class="form-control" id="fname"
+                                    type="text" placeholder="Enter your name..." data-sb-validations="required"
+                                    required />
+                                <label for="name">Name (as registered)</label>
+                            </div>
+                            <!-- PH number input-->
+                            <div class="form-floating mb-3">
+                                <input name="number" value="<%= data.phone_number %>" class="form-control"
+                                    id="ph_number" type="tel" placeholder="PH number" data-sb-validations="required"
+                                    required />
+                                <label for="tel">Phone number</label>
+                            </div>
+
+                            <!-- Submit Button-->
+                            <div class="d-grid">
+                                <button class="green_bcg btn btn btn-lg" type="submit" id="submitButton"
+                                    aria-describedby="submitWarn">Update my Appointment</button>
+                            </div>
+                            <div id="submitWarn" class="form-text">By submitting, you agree to our <a href="?">Terms
+                                    &
+                                    Conditions</a> </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer-->
+        <div class="darkblue_bcg">
+            <footer class="py-5">
+                <div class="container">
+                    <p class="m-0 text-white">Please be informed that by even using our website, you agree to
+                        all of
+                        our
+                        Terms, Conditions, and other Privacy agreements.<br> If you require further details,<b>
+                            contact
+                            our
+                            SG
+                            center at +65 12344321.</b>
+                    </p>
+                </div>
+            </footer>
+        </div>
+
+        <!-- Bootstrap core JS-->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+        <!-- Responsive calendar JS-->
+        <script src="scripts/calendar.js"></script>
+
+    </body>
+
+</body>
+
+</html>

@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <title>New User: Medical Declamation</title>
+    <!-- Favicon-->
+    <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
+    <!-- Bootstrap icons-->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet" />
+    <!-- Core theme CSS (includes Bootstrap)-->
+    <link href="css/styles.css" rel="stylesheet" />
+    <link href="css/additional.css" rel="stylesheet" />
+
+</head>
+
+<body>
+    <div class="darkblue_bcg">
+        <!-- Responsive navbar-->
+        <nav class="navbar navbar-expand-lg navbar-dark">
+            <div class="container px-lg-5">
+                <a class="navbar-brand">E-Health Application</a>
+            </div>
+        </nav>
+    </div>
+
+    <!-- Header-->
+    <div class="darkblue_bcg">
+        <header class=" py-5">
+            <div class="container px-5">
+                <div class="row gx-5 justify-content-center">
+                    <div class="col-lg-6">
+                        <div class="text-center my-5">
+                            <h1 class="display-5 fw-bolder text-white mb-2">You're only one step away.</h1>
+                            <p class="text-white-50 mb-4">Access a full suite of health and wellness services
+                                to look after every aspect of your healthcare needs.</h6>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>
+    </div>
+
+    <!-- Page Content-->
+    <!-- About section-->
+    <section id="about">
+        <div class="container px-4">
+            <div class="row gx-4 justify-content-center">
+                <div class="col-lg-8">
+                    <br>
+                    <div class="card mb-4">
+                        <div class="card-body">
+                            <h3 class="card-title">Medical Declamation Form</h3>
+                            <p class="card-text"> Please help us by providing some details so our services can be
+                                tailored
+                                to better suit your medical needs.</p>
+                            <!---Medical declamation main form-->
+                            <form action="/submittedMedicalForm" method="POST" id="medical_declamation">
+                                <!--Gender-->
+                                <div class="form-floating mb-3">
+                                    <select name="gender" class="form-control form-select bg-light border-dark"
+                                        id="gender" required>
+                                        <option selected disabled value=""></option>
+                                        <option value="Male">Male</option>
+                                        <option value="Female">Female</option>
+                                        <option value="NA">Non Binary</option>
+                                        <option value="ND">Prefer not to disclose</option>
+                                    </select>
+                                    <label for="gender">Gender</label>
+                                </div>
+                                <!-- DOB-->
+                                <div class="form-floating mb-3">
+                                    <input class="form-control" name="birthDate" id="DOB" type="date" placeholder=" DOB"
+                                        data-sb-validations="required" required />
+                                    <label for="DOB">Date of Birth</label>
+                                </div>
+                                <!-- Age-->
+                                <div class="form-floating mb-3">
+                                    <input class="form-control" name="age" id="age" type="number"
+                                        placeholder=" Your Age" data-sb-validations="required" required />
+                                    <label for="name">Age</label>
+                                </div>
+                                <!-- Nationality-->
+                                <div class="form-floating mb-3">
+                                    <input class="form-control" name="nationality" id="nationality" type="text"
+                                        placeholder=" Nationality" data-sb-validations="required" required />
+                                    <label for="name">Nationality</label>
+                                </div>
+                                <!-- PH-->
+                                <div class="form-floating mb-3">
+                                    <input class="form-control" id="PH" name="phone" type="text"
+                                        placeholder="Phone number" data-sb-validations="required" required />
+                                    <label for="PH">Phone number</label>
+                                </div>
+                                <!-- Emergency PH-->
+                                <div class="form-floating mb-3">
+                                    <input class="form-control" name="emergencyNum" id="emergency_PH" type="text"
+                                        placeholder=" emergency_PH" data-sb-validations="required" required />
+                                    <label for="emergency_PH">Emergency Contact</label>
+                                </div>
+                                <!-- Address-->
+                                <div class="form-floating mb-3">
+                                    <input class="form-control" name="address" id="address" type="text"
+                                        style="height: 100px;" placeholder=" Your residential address"
+                                        data-sb-validations="required" aria-describedby="address_warn" required />
+                                    <label for="name">Your Residential Address</label>
+                                    <div id="address_warn" class="form-text">Note that we will use your location to
+                                        contact
+                                        your nearest hospital in case of an emergency and other purposes</div>
+                                </div>
+                                <!-- Family History of Illness-->
+                                <div class="form-floating mb-3">
+                                    <select name="familyhistory" class="form-control form-select bg-light border-dark"
+                                        id="familyhistory" required>
+                                        <option selected disabled value=""></option>
+                                        <option value="Nil">NIL</option>
+                                        <option value="Asthma">Asthma</option>
+                                        <option value="Diabetes">Diabetes</option>
+                                        <option value="Cancer">Cancer</option>
+                                        <option value="HyperTension">HyperTension</option>
+                                    </select>
+                                    <label for="familyhistory">Family history of any illness</label>
+                                </div>
+                                <!-- Medications-->
+                                <div class="form-floating mb-3">
+                                    <select name="medications" class="form-control form-select bg-light border-dark"
+                                        id="medications" required>
+                                        <option selected disabled value=""></option>
+                                        <option value="Yes">Yes</option>
+                                        <option value="No">Nil</option>
+                                    </select>
+                                    <label for="Medications">Are you on any medications</label>
+                                </div>
+                                <!-- allergies-->
+                                <div class="form-floating mb-3">
+                                    <select name="allergies" class="form-control form-select bg-light border-dark"
+                                        id="allergies" required>
+                                        <option selected disabled value=""></option>
+                                        <option value="No">Nil</option>
+                                        <option value="Yes">Yes</option>
+                                    </select>
+                                    <label for="allergies">Any Medical Allergies</label>
+                                </div>
+                                <!-- Vaccines-->
+                                <div class="form-floating mb-3">
+                                    <select name="vaccination" class="form-control form-select bg-light border-dark"
+                                        id="vaccines">
+                                        <option></option>
+                                        <option>Inactivated poliovirus vaccine (IPV)</option>
+                                        <option>DTap Vaccine</option>
+                                        <option>Tuberculosis Vaccine</option>
+                                        <option>TT and DTap (Vaccination + Booster)</option>
+                                        <option>Pfzier, 2 doses (Covid)</option>
+                                        <option>Pfzier, Booster Dose (Covid)</option>
+                                        <option>None of the Above</option>
+                                        <option>All of the Above</option>
+                                        <option>Custom</option>
+                                    </select>
+                                    <label for="vaccines">Universal vaccinations you have received</label>
+                                </div>
+                                <!-- Conditions to be aware of-->
+                                <div class="form-floating mb-3">
+                                    <input class="form-control" name="moreInfo" id="conditions" type="text"
+                                        style="height: 100px;" placeholder=" aware" data-sb-validations="required"
+                                        required />
+                                    <label for="name">Add any specific notifications to doctor (if you wish
+                                        to)</label>
+                                </div>
+                                <!-- Submit Button-->
+                                <div class="d-grid"> <button class="orange_bcg btn btn btn-lg" type="submit"
+                                        style="color: white;" aria-describedby="submitWarn"> Sign me up!</a>
+                                </div>
+                                <div id="submitWarn" class="form-text">By submitting, you agree to our <a href="?">Terms
+                                        &
+                                        Conditions</a>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer-->
+    <div class="darkblue_bcg">
+        <footer class="py-5">
+            <div class="container">
+                <p class="m-0 text-white">Please be informed that by even using our website, you agree to all of our
+                    Terms, Conditions, and other Privacy agreements.<br> If you require further details,<b> contact
+                        our
+                        SG
+                        center at +65 12344321.</b>
+                </p>
+            </div>
+        </footer>
+    </div>
+
+    <!-- Bootstrap core JS-->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Responsive calendar JS-->
+    <script src="scripts/calendar.js"></script>
+
+</body>
+
+</html>
